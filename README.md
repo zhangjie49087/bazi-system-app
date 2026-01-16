@@ -1,6 +1,37 @@
-# 八字排盘微信小程序
+# 八字排盘系统 (Bazi System)
+
+<div align="center">
+
+[![GitHub stars](https://img.shields.io/github/stars/zhangjie49087/bazi-system-app?style=social)](https://github.com/zhangjie49087/bazi-system-app)
+[![GitHub forks](https://img.shields.io/github/forks/zhangjie49087/bazi-system-app?style=social)](https://github.com/zhangjie49087/bazi-system-app)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 一个功能完整的八字排盘微信小程序，支持输入生日时辰、计算八字、展示十神神煞、保存历史记录等功能。
+
+[功能特性](#-功能特性) • [快速开始](#-快速开始) • [项目结构](#-项目结构) • [技术架构](#-技术架构) • [文档](#-文档)
+
+</div>
+
+---
+
+## 📸 预览
+
+<table>
+  <tr>
+    <td><img src="docs/screenshots/home.png" width="200" alt="首页"/></td>
+    <td><img src="docs/screenshots/result.png" width="200" alt="结果页"/></td>
+    <td><img src="docs/screenshots/history.png" width="200" alt="历史记录"/></td>
+    <td><img src="docs/screenshots/mine.png" width="200" alt="我的"/></td>
+  </tr>
+  <tr>
+    <td align="center">首页</td>
+    <td align="center">结果页</td>
+    <td align="center">历史记录</td>
+    <td align="center">我的</td>
+  </tr>
+</table>
+
+> 注：截图待添加，可在微信开发者工具中预览实际效果
 
 ## ✨ 项目特点
 
@@ -12,6 +43,12 @@
 - 📚 **文档齐全**：架构设计、部署指南、使用说明
 
 ## 🎉 当前状态
+
+<div align="center">
+
+![Progress](https://progress-bar.dev/85/?title=完成度&width=400&color=667eea)
+
+</div>
 
 **✅ 已完成（85%）**：
 - 核心业务逻辑（八字计算）
@@ -64,31 +101,48 @@ bazi/
 
 ## 🚀 快速开始
 
-### 1. 安装微信开发者工具
+### 前置要求
 
-下载地址：https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html
+- [微信开发者工具](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
+- Node.js >= 12.0.0
+- 微信小程序 AppID（可使用测试号）
 
-### 2. 打开项目
+### 1. 克隆项目
+
+```bash
+git clone https://github.com/zhangjie49087/bazi-system-app.git
+cd bazi-system-app
+```
+
+### 2. 安装依赖
+
+```bash
+# 安装核心库依赖
+cd bazi-core
+npm install
+
+# 返回项目根目录
+cd ..
+```
+
+### 3. 打开项目
 
 1. 启动微信开发者工具
 2. 选择"导入项目"
 3. 项目目录选择：`bazi-miniapp`
 4. 填写 AppID（测试号或正式 AppID）
 
-### 3. 预览界面（使用模拟数据）
+### 4. 预览界面（使用模拟数据）
 
 当前配置为模拟数据模式，可以直接预览所有页面：
 
-```bash
-# 在微信开发者工具中
-1. 点击"编译"
+1. 在微信开发者工具中点击"编译"
 2. 在模拟器中查看首页
 3. 点击"填充示例"快速填充数据
 4. 点击"开始排盘"查看结果页
 5. 切换到"历史"和"我的"标签查看其他页面
-```
 
-### 4. 配置云开发（真实环境）
+### 5. 配置云开发（真实环境）
 
 详细步骤请参考：[docs/CLOUD_DEPLOYMENT.md](docs/CLOUD_DEPLOYMENT.md)
 
@@ -274,14 +328,90 @@ node test-cloudfunctions.js
 
 ## 💡 技术支持
 
+### 常见问题
+
+<details>
+<summary>如何切换到真实云开发环境？</summary>
+
+1. 在微信开发者工具中开通云开发
+2. 上传所有云函数
+3. 修改 `bazi-miniapp/utils/cloudApi.js` 中的 `USE_MOCK_DATA` 为 `false`
+4. 重新编译
+
+详见：[云函数部署指南](docs/CLOUD_DEPLOYMENT.md)
+</details>
+
+<details>
+<summary>如何测试核心功能？</summary>
+
+```bash
+# 测试核心业务逻辑
+cd bazi-core
+npm test
+
+# 测试云函数逻辑
+cd bazi-miniapp
+node test-cloudfunctions.js
+```
+</details>
+
+<details>
+<summary>如何迁移到传统服务器？</summary>
+
+由于采用三层架构，核心逻辑独立在 `bazi-core` 包中，迁移只需：
+1. 将 `bazi-core` 部署到 Node.js 服务器
+2. 创建 REST API 接口
+3. 修改小程序的 API 调用地址
+
+预计工作量：1-2 天
+</details>
+
+### 获取帮助
+
 如有问题，请查看：
-1. 项目文档（docs/ 目录）
+1. [项目文档](docs/) 目录
 2. 代码注释
-3. 测试脚本
+3. [Issues](https://github.com/zhangjie49087/bazi-system-app/issues)
+
+## 🤝 贡献
+
+欢迎贡献代码！请遵循以下步骤：
+
+1. Fork 本仓库
+2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 开启 Pull Request
+
+## 📝 更新日志
+
+### v1.0.0 (2026-01-16)
+
+- ✨ 初始版本发布
+- ✅ 完成核心八字计算功能
+- ✅ 完成所有前端页面
+- ✅ 完成云函数开发
+- 📚 完善项目文档
 
 ## 📄 许可证
 
-MIT License
+本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件
+
+## 👨‍💻 作者
+
+**zhangjie49087**
+
+- GitHub: [@zhangjie49087](https://github.com/zhangjie49087)
+- Email: 827849168@qq.com
+
+## ⭐ Star History
+
+如果这个项目对你有帮助，请给它一个 Star ⭐️
+
+[![Star History Chart](https://api.star-history.com/svg?repos=zhangjie49087/bazi-system-app&type=Date)](https://star-history.com/#zhangjie49087/bazi-system-app&Date)
+
+## 💡 技术支持
+
 
 ## 🎉 总结
 
@@ -295,3 +425,13 @@ MIT License
 5. 提交审核发布
 
 祝你的八字排盘小程序顺利上线！🎊
+
+---
+
+<div align="center">
+
+Made with ❤️ by [zhangjie49087](https://github.com/zhangjie49087)
+
+如果觉得不错，请给个 ⭐️ Star 支持一下！
+
+</div>

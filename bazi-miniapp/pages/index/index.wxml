@@ -1,0 +1,113 @@
+<!-- pages/index/index.wxml -->
+<view class="container">
+  <!-- 标题 -->
+  <view class="header">
+    <text class="title">八字排盘</text>
+    <text class="subtitle">输入生辰信息，查看命理分析</text>
+  </view>
+
+  <!-- 表单 -->
+  <view class="form-card">
+    <!-- 姓名 -->
+    <view class="form-item">
+      <view class="form-label">
+        <text>姓名</text>
+        <text class="optional">（可选）</text>
+      </view>
+      <input
+        class="form-input"
+        placeholder="请输入姓名"
+        value="{{name}}"
+        bindinput="onNameInput"
+        maxlength="10"
+      />
+    </view>
+
+    <!-- 性别 -->
+    <view class="form-item">
+      <view class="form-label">
+        <text>性别</text>
+      </view>
+      <radio-group class="radio-group" bindchange="onGenderChange">
+        <label class="radio-item" wx:for="{{genderOptions}}" wx:key="value">
+          <radio value="{{item.value}}" checked="{{gender === item.value}}" color="#1976D2"/>
+          <text class="radio-label">{{item.label}}</text>
+        </label>
+      </radio-group>
+    </view>
+
+    <!-- 出生日期 -->
+    <view class="form-item">
+      <view class="form-label">
+        <text>出生日期</text>
+        <text class="required">*</text>
+      </view>
+      <picker
+        mode="date"
+        value="{{date}}"
+        start="1900-01-01"
+        end="2100-12-31"
+        bindchange="onDateChange"
+      >
+        <view class="picker-view">
+          <text class="{{date ? 'picker-text' : 'picker-placeholder'}}">
+            {{date || '请选择日期'}}
+          </text>
+          <text class="picker-icon">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 出生时间 -->
+    <view class="form-item">
+      <view class="form-label">
+        <text>出生时间</text>
+        <text class="required">*</text>
+      </view>
+      <picker
+        mode="time"
+        value="{{time}}"
+        bindchange="onTimeChange"
+      >
+        <view class="picker-view">
+          <text class="{{time ? 'picker-text' : 'picker-placeholder'}}">
+            {{time || '请选择时间'}}
+          </text>
+          <text class="picker-icon">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 提示信息 -->
+    <view class="form-tip">
+      <text class="tip-icon">💡</text>
+      <text class="tip-text">请输入准确的出生时间，时辰对八字影响很大</text>
+    </view>
+  </view>
+
+  <!-- 按钮组 -->
+  <view class="button-group">
+    <button class="btn-secondary" bindtap="onFillExample">
+      填充示例
+    </button>
+    <button class="btn-primary" bindtap="onSubmit">
+      开始排盘
+    </button>
+  </view>
+
+  <!-- 说明 -->
+  <view class="description">
+    <view class="desc-item">
+      <text class="desc-icon">📅</text>
+      <text class="desc-text">根据生辰八字推算命理</text>
+    </view>
+    <view class="desc-item">
+      <text class="desc-icon">🔮</text>
+      <text class="desc-text">包含十神、神煞、五行分析</text>
+    </view>
+    <view class="desc-item">
+      <text class="desc-icon">💾</text>
+      <text class="desc-text">自动保存历史记录</text>
+    </view>
+  </view>
+</view>

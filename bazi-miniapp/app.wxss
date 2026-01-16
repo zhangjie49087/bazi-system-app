@@ -1,0 +1,83 @@
+/* app.wxss - 全局样式 */
+
+page {
+  background-color: #F5F5F5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+}
+
+/* 通用容器 */
+.container {
+  min-height: 100vh;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+/* 通用卡片 */
+.card {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+/* 通用按钮 */
+.btn-primary {
+  background: #1976D2;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8rpx;
+  padding: 20rpx 40rpx;
+  font-size: 28rpx;
+}
+
+.btn-secondary {
+  background: #FFFFFF;
+  color: #1976D2;
+  border: 2rpx solid #1976D2;
+  border-radius: 8rpx;
+  padding: 20rpx 40rpx;
+  font-size: 28rpx;
+}
+
+/* 五行颜色 */
+.wuxing-金 {
+  color: #D4AF37;
+}
+
+.wuxing-木 {
+  color: #4CAF50;
+}
+
+.wuxing-水 {
+  color: #2196F3;
+}
+
+.wuxing-火 {
+  color: #F44336;
+}
+
+.wuxing-土 {
+  color: #8D6E63;
+}
+
+/* 五行背景色 */
+.wuxing-bg-金 {
+  background: #FFF9E6;
+}
+
+.wuxing-bg-木 {
+  background: #E8F5E9;
+}
+
+.wuxing-bg-水 {
+  background: #E3F2FD;
+}
+
+.wuxing-bg-火 {
+  background: #FFEBEE;
+}
+
+.wuxing-bg-土 {
+  background: #EFEBE9;
+}

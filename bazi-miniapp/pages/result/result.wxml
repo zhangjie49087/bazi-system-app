@@ -1,0 +1,306 @@
+<!-- pages/result/result.wxml -->
+<view class="container" wx:if="{{result}}">
+
+  <!-- 顶部装饰 -->
+  <view class="header-decoration">
+    <!-- TODO: 可以在这里添加装饰性图片或logo -->
+    <view class="decoration-circle"></view>
+    <view class="decoration-circle"></view>
+  </view>
+
+  <!-- 基本信息卡片 -->
+  <view class="info-card card">
+    <view class="card-header">
+      <text class="card-title">基本信息</text>
+    </view>
+    <view class="info-grid">
+      <view class="info-item">
+        <text class="info-label">姓名</text>
+        <text class="info-value">{{result.name || '未填写'}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">性别</text>
+        <text class="info-value">{{result.gender === 1 ? '男' : '女'}}</text>
+      </view>
+      <view class="info-item full-width">
+        <text class="info-label">公历</text>
+        <text class="info-value">{{result.solar}}</text>
+      </view>
+      <view class="info-item full-width">
+        <text class="info-label">农历</text>
+        <text class="info-value">{{result.lunar}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 四柱八字卡片 -->
+  <view class="bazi-card card">
+    <view class="card-header">
+      <text class="card-title">四柱八字</text>
+      <text class="card-subtitle">年柱 月柱 日柱 时柱</text>
+    </view>
+
+    <view class="bazi-table">
+      <!-- 表头 -->
+      <view class="bazi-row header-row">
+        <view class="bazi-cell">年柱</view>
+        <view class="bazi-cell">月柱</view>
+        <view class="bazi-cell">日柱</view>
+        <view class="bazi-cell">时柱</view>
+      </view>
+
+      <!-- 天干 -->
+      <view class="bazi-row">
+        <view class="bazi-cell {{getWuxingBgClass(result.wuxing.year.gan)}}">
+          <text class="gan-text">{{result.ganzhiDetail.year.gan}}</text>
+          <text class="wx-text">{{result.wuxing.year.gan}}</text>
+        </view>
+        <view class="bazi-cell {{getWuxingBgClass(result.wuxing.month.gan)}}">
+          <text class="gan-text">{{result.ganzhiDetail.month.gan}}</text>
+          <text class="wx-text">{{result.wuxing.month.gan}}</text>
+        </view>
+        <view class="bazi-cell {{getWuxingBgClass(result.wuxing.day.gan)}}">
+          <text class="gan-text">{{result.ganzhiDetail.day.gan}}</text>
+          <text class="wx-text">{{result.wuxing.day.gan}}</text>
+        </view>
+        <view class="bazi-cell {{getWuxingBgClass(result.wuxing.hour.gan)}}">
+          <text class="gan-text">{{result.ganzhiDetail.hour.gan}}</text>
+          <text class="wx-text">{{result.wuxing.hour.gan}}</text>
+        </view>
+      </view>
+
+      <!-- 地支 -->
+      <view class="bazi-row">
+        <view class="bazi-cell {{getWuxingBgClass(result.wuxing.year.zhi)}}">
+          <text class="zhi-text">{{result.ganzhiDetail.year.zhi}}</text>
+          <text class="wx-text">{{result.wuxing.year.zhi}}</text>
+        </view>
+        <view class="bazi-cell {{getWuxingBgClass(result.wuxing.month.zhi)}}">
+          <text class="zhi-text">{{result.ganzhiDetail.month.zhi}}</text>
+          <text class="wx-text">{{result.wuxing.month.zhi}}</text>
+        </view>
+        <view class="bazi-cell {{getWuxingBgClass(result.wuxing.day.zhi)}}">
+          <text class="zhi-text">{{result.ganzhiDetail.day.zhi}}</text>
+          <text class="wx-text">{{result.wuxing.day.zhi}}</text>
+        </view>
+        <view class="bazi-cell {{getWuxingBgClass(result.wuxing.hour.zhi)}}">
+          <text class="zhi-text">{{result.ganzhiDetail.hour.zhi}}</text>
+          <text class="wx-text">{{result.wuxing.hour.zhi}}</text>
+        </view>
+      </view>
+
+      <!-- 纳音 -->
+      <view class="bazi-row nayin-row">
+        <view class="bazi-cell">{{result.nayin.year}}</view>
+        <view class="bazi-cell">{{result.nayin.month}}</view>
+        <view class="bazi-cell">{{result.nayin.day}}</view>
+        <view class="bazi-cell">{{result.nayin.hour}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 十神配置卡片 -->
+  <view class="shishen-card card">
+    <view class="card-header">
+      <text class="card-title">十神配置</text>
+    </view>
+
+    <view class="shishen-table">
+      <view class="shishen-row">
+        <view class="shishen-label">天干</view>
+        <view class="shishen-cell">{{result.shishen.year.gan}}</view>
+        <view class="shishen-cell">{{result.shishen.month.gan}}</view>
+        <view class="shishen-cell highlight">{{result.shishen.day.gan}}</view>
+        <view class="shishen-cell">{{result.shishen.hour.gan}}</view>
+      </view>
+      <view class="shishen-row">
+        <view class="shishen-label">地支</view>
+        <view class="shishen-cell">{{result.shishen.year.zhi}}</view>
+        <view class="shishen-cell">{{result.shishen.month.zhi}}</view>
+        <view class="shishen-cell">{{result.shishen.day.zhi}}</view>
+        <view class="shishen-cell">{{result.shishen.hour.zhi}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 神煞信息卡片 -->
+  <view class="shensha-card card" wx:if="{{result.shensha}}">
+    <view class="card-header">
+      <text class="card-title">神煞信息</text>
+    </view>
+
+    <view class="shensha-list">
+      <view class="shensha-item" wx:if="{{result.shensha.year.length > 0}}">
+        <text class="shensha-label">年柱</text>
+        <view class="shensha-tags">
+          <text class="shensha-tag" wx:for="{{result.shensha.year}}" wx:key="index">{{item}}</text>
+        </view>
+      </view>
+
+      <view class="shensha-item" wx:if="{{result.shensha.month.length > 0}}">
+        <text class="shensha-label">月柱</text>
+        <view class="shensha-tags">
+          <text class="shensha-tag" wx:for="{{result.shensha.month}}" wx:key="index">{{item}}</text>
+        </view>
+      </view>
+
+      <view class="shensha-item" wx:if="{{result.shensha.day.length > 0}}">
+        <text class="shensha-label">日柱</text>
+        <view class="shensha-tags">
+          <text class="shensha-tag" wx:for="{{result.shensha.day}}" wx:key="index">{{item}}</text>
+        </view>
+      </view>
+
+      <view class="shensha-item" wx:if="{{result.shensha.hour.length > 0}}">
+        <text class="shensha-label">时柱</text>
+        <view class="shensha-tags">
+          <text class="shensha-tag" wx:for="{{result.shensha.hour}}" wx:key="index">{{item}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 五行统计卡片 -->
+  <view class="wuxing-card card">
+    <view class="card-header">
+      <text class="card-title">五行统计</text>
+    </view>
+
+    <view class="wuxing-stats">
+      <view class="wuxing-item" wx:for="{{wuxingList}}" wx:key="name">
+        <view class="wuxing-info">
+          <text class="wuxing-name {{getWuxingClass(item.name)}}">{{item.name}}</text>
+          <text class="wuxing-count">{{item.count}}</text>
+        </view>
+        <view class="wuxing-bar">
+          <view class="wuxing-fill {{getWuxingBgClass(item.name)}}" style="width: {{item.percent}}%"></view>
+        </view>
+        <text class="wuxing-percent">{{item.percent}}%</text>
+      </view>
+    </view>
+
+    <view class="wuxing-lack" wx:if="{{lackWuxing.length > 0}}">
+      <text class="lack-icon">⚠️</text>
+      <text class="lack-text">五行缺{{lackWuxing.join('、')}}</text>
+    </view>
+  </view>
+
+  <!-- 命理分析卡片 -->
+  <view class="analysis-card card">
+    <view class="card-header">
+      <text class="card-title">命理分析</text>
+    </view>
+
+    <!-- 日主命局 -->
+    <view class="analysis-section">
+      <view class="section-header">
+        <text class="section-icon">🎯</text>
+        <text class="section-title">日主命局</text>
+      </view>
+      <view class="section-content">
+        <text class="highlight-text">日主：{{result.dayGan}}（{{result.dayGanWuxing}}）</text>
+        <text class="normal-text">{{result.mingju}}</text>
+      </view>
+    </view>
+
+    <!-- 综合分析 -->
+    <view class="analysis-section">
+      <view class="section-header">
+        <text class="section-icon">📊</text>
+        <text class="section-title">综合分析</text>
+      </view>
+      <view class="section-content">
+        <text class="normal-text">{{result.analysis.summary}}</text>
+      </view>
+    </view>
+
+    <!-- 五行分析 -->
+    <view class="analysis-section">
+      <view class="section-header">
+        <text class="section-icon">⚖️</text>
+        <text class="section-title">五行分析</text>
+      </view>
+      <view class="section-content">
+        <text class="normal-text">{{result.analysis.wuxingAnalysis}}</text>
+      </view>
+    </view>
+
+    <!-- 性格特点 -->
+    <view class="analysis-section">
+      <view class="section-header">
+        <text class="section-icon">👤</text>
+        <text class="section-title">性格特点</text>
+      </view>
+      <view class="section-content">
+        <text class="normal-text">{{result.analysis.personality}}</text>
+      </view>
+    </view>
+
+    <!-- 事业建议 -->
+    <view class="analysis-section">
+      <view class="section-header">
+        <text class="section-icon">💼</text>
+        <text class="section-title">事业建议</text>
+      </view>
+      <view class="section-content">
+        <text class="normal-text">{{result.analysis.career}}</text>
+      </view>
+    </view>
+
+    <!-- 健康提示 -->
+    <view class="analysis-section">
+      <view class="section-header">
+        <text class="section-icon">❤️</text>
+        <text class="section-title">健康提示</text>
+      </view>
+      <view class="section-content">
+        <text class="normal-text">{{result.analysis.health}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 大运信息卡片 -->
+  <view class="dayun-card card" wx:if="{{result.dayun && result.dayun.length > 0}}">
+    <view class="card-header">
+      <text class="card-title">大运信息</text>
+      <text class="card-subtitle">前五个大运</text>
+    </view>
+
+    <view class="dayun-list">
+      <view class="dayun-item" wx:for="{{result.dayun}}" wx:key="age" wx:if="{{index < 5}}">
+        <view class="dayun-age">{{item.age}}</view>
+        <view class="dayun-ganzhi">{{item.ganzhi}}</view>
+        <view class="dayun-year">{{item.startYear}}年起</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-buttons">
+    <button class="action-btn" bindtap="onBackHome">
+      <text class="btn-icon">🏠</text>
+      <text class="btn-text">返回首页</text>
+    </button>
+    <button class="action-btn" bindtap="onViewHistory">
+      <text class="btn-icon">📜</text>
+      <text class="btn-text">查看历史</text>
+    </button>
+    <button class="action-btn" open-type="share" bindtap="onShare">
+      <text class="btn-icon">📤</text>
+      <text class="btn-text">分享</text>
+    </button>
+  </view>
+
+  <!-- 底部说明 -->
+  <view class="footer-note">
+    <text class="note-text">* 以上分析仅供参考，具体情况需结合整体命局综合判断</text>
+  </view>
+
+</view>
+
+<!-- 加载失败提示 -->
+<view class="empty-state" wx:else>
+  <text class="empty-icon">😕</text>
+  <text class="empty-text">数据加载失败</text>
+  <button class="empty-btn" bindtap="onBackHome">返回首页</button>
+</view>

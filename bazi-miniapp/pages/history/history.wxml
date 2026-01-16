@@ -1,0 +1,72 @@
+<!-- pages/history/history.wxml -->
+<view class="container">
+
+  <!-- 历史记录列表 -->
+  <view class="records-list" wx:if="{{!isEmpty}}">
+    <view
+      class="record-item"
+      wx:for="{{records}}"
+      wx:key="id"
+      bindtap="onViewDetail"
+      data-record="{{item}}"
+    >
+      <view class="record-header">
+        <view class="record-name">
+          <text class="name-text">{{item.name || '未命名'}}</text>
+          <text class="gender-badge">{{item.gender === 1 ? '男' : '女'}}</text>
+        </view>
+        <view class="record-date">
+          <text class="date-text">{{item.solar}}</text>
+        </view>
+      </view>
+
+      <view class="record-bazi">
+        <view class="bazi-item">
+          <text class="bazi-label">年柱</text>
+          <text class="bazi-value">{{item.ganzhi.year}}</text>
+        </view>
+        <view class="bazi-item">
+          <text class="bazi-label">月柱</text>
+          <text class="bazi-value">{{item.ganzhi.month}}</text>
+        </view>
+        <view class="bazi-item">
+          <text class="bazi-label">日柱</text>
+          <text class="bazi-value">{{item.ganzhi.day}}</text>
+        </view>
+        <view class="bazi-item">
+          <text class="bazi-label">时柱</text>
+          <text class="bazi-value">{{item.ganzhi.hour}}</text>
+        </view>
+      </view>
+
+      <view class="record-footer">
+        <view class="record-time">
+          <text class="time-icon">🕐</text>
+          <text class="time-text">{{item.createdAt || item.created_at}}</text>
+        </view>
+        <view class="record-actions" catchtap="onDeleteRecord" data-id="{{item.id}}" data-index="{{index}}">
+          <text class="delete-icon">🗑️</text>
+          <text class="delete-text">删除</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading-more" wx:if="{{loading && !isEmpty}}">
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <view class="no-more" wx:if="{{!hasMore && !isEmpty && records.length > 0}}">
+    <text class="no-more-text">没有更多了</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{isEmpty && !loading}}">
+    <text class="empty-icon">📋</text>
+    <text class="empty-text">暂无历史记录</text>
+    <text class="empty-desc">开始你的第一次八字排盘吧</text>
+    <button class="empty-btn" bindtap="onStartNew">开始排盘</button>
+  </view>
+
+</view>

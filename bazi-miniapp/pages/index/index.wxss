@@ -1,0 +1,208 @@
+/* pages/index/index.wxss */
+
+.container {
+  min-height: 100vh;
+  padding: 40rpx 30rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* 标题区域 */
+.header {
+  text-align: center;
+  margin-bottom: 60rpx;
+  padding-top: 40rpx;
+}
+
+.title {
+  display: block;
+  font-size: 56rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+  margin-bottom: 20rpx;
+  letter-spacing: 4rpx;
+}
+
+.subtitle {
+  display: block;
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* 表单卡片 */
+.form-card {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 40rpx 30rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.1);
+  margin-bottom: 40rpx;
+}
+
+/* 表单项 */
+.form-item {
+  margin-bottom: 40rpx;
+}
+
+.form-item:last-child {
+  margin-bottom: 0;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 20rpx;
+}
+
+.optional {
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 10rpx;
+}
+
+.required {
+  color: #F44336;
+  margin-left: 8rpx;
+  font-size: 32rpx;
+}
+
+/* 输入框 */
+.form-input {
+  width: 100%;
+  height: 88rpx;
+  padding: 0 24rpx;
+  background: #F5F5F5;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+
+/* 单选框组 */
+.radio-group {
+  display: flex;
+  gap: 40rpx;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+}
+
+.radio-label {
+  margin-left: 12rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+
+/* 选择器 */
+.picker-view {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 88rpx;
+  padding: 0 24rpx;
+  background: #F5F5F5;
+  border-radius: 12rpx;
+}
+
+.picker-text {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.picker-placeholder {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.picker-icon {
+  font-size: 40rpx;
+  color: #999;
+  font-weight: 300;
+}
+
+/* 提示信息 */
+.form-tip {
+  display: flex;
+  align-items: flex-start;
+  padding: 20rpx;
+  background: #FFF3E0;
+  border-radius: 12rpx;
+  margin-top: 30rpx;
+}
+
+.tip-icon {
+  font-size: 32rpx;
+  margin-right: 12rpx;
+}
+
+.tip-text {
+  flex: 1;
+  font-size: 24rpx;
+  color: #F57C00;
+  line-height: 1.6;
+}
+
+/* 按钮组 */
+.button-group {
+  display: flex;
+  gap: 20rpx;
+  margin-bottom: 60rpx;
+}
+
+.btn-primary,
+.btn-secondary {
+  flex: 1;
+  height: 88rpx;
+  line-height: 88rpx;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  border: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #FFFFFF;
+}
+
+.btn-primary::after {
+  border: none;
+}
+
+.btn-secondary {
+  background: #FFFFFF;
+  color: #667eea;
+  border: 2rpx solid #667eea;
+}
+
+.btn-secondary::after {
+  border: none;
+}
+
+/* 说明区域 */
+.description {
+  padding: 40rpx 20rpx;
+}
+
+.desc-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.desc-item:last-child {
+  margin-bottom: 0;
+}
+
+.desc-icon {
+  font-size: 36rpx;
+  margin-right: 16rpx;
+}
+
+.desc-text {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+}
